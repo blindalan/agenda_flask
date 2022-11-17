@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Contatos</h2>
+  <hr />
+
+  <div class="form-group">
+    <a class="btn btn-primary" href="{{ url_for('add') }}">Novo</a>
+    <button id="btnEdit" class="btn btn btn-outline-secondary">Editar</button>
+    <button id="btnRemove" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmRemoveModal">Eliminar</button>
+  </div>
+  <div class="form-row">
+    <div class="col-md-10">
+      <input type="text" id="textFilter" class="form-control" value="{{ filter_term }}" />
+    </div>
+    <div class="col-md-1">
+      <button id="btnFilter" class="btn btn-outline-secondary">Buscar</button>
+    </div>
+    <div class="col-md-1">
+      <button id="btnClear" class="btn btn-outline-secondary">Limpar</button>
+    </div>
+  </div>
+  <hr />
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th style="display: none;" scope="col"></th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">Endereço</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in contacts %}
+        <tr class="clickable-row">
+          <td style="display: none;" class="edit_url">
+            <div class="id_contact">{{ c.id }}</div>
+            <a href="{{ url_for('edit', id_contact = c.id) }}">Editar</a>
+          </td>
+          <td>{{ c.name }}</td>
+          <td>{{ c.lastName }}</td>
+          <td>{{ c.address }}</td>
+          <td>{{ c.city }}</td>
+          <td>{{ c.phone }}</td>
+          <td>{{ c.email }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="confirmRemoveModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar ação</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Realmente deseja eliminar o contato?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnConfirmRemove" class="btn btn-danger">Eliminar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form id="formRemove" action="{{ url_for('remove') }}" method="POST" style="display: none;">
+    <input type="number" name="id_contact" />
+  </form>
+{% endblock %}
+
+{% block extrascripts %}
+  <script>
+    $(document).ready(function () {
+      $('#btnEdit').attr('disabled', 'true')
+      $('#btnRemove').attr('disabled', 'true')
+    })
+    
+    $('table').on('click', '.clickable-row', function (event) {
+      if ($(this).hasClass('table-primary')) {
+        $(this).removeClass('table-primary')
+        $('#btnEdit').attr('disabled', 'true')
+        $('#btnRemove').attr('disabled', 'true')
+      } else {
+        $(this).addClass('table-primary').siblings().removeClass('table-primary')
+        $('#btnEdit').removeAttr('disabled')
+        $('#btnRemove').removeAttr('disabled')
+      }
+    })
+    
+    function get_selected_id() {
+      return parseInt($('tr.clickable-row.table-primary').find('.id_contact').text())
+    }
+    
+    $('#btnEdit').on('click', function () {
+      window.location = $('tr.clickable-row.table-primary').find('a').attr('href')
+    })
+    
+    $('#btnConfirmRemove').on('click', function () {
+      $('#formRemove input').val(get_selected_id())
+      $('#formRemove').submit()
+    })
+    
+    $('#btnFilter').on('click', function () {
+      var term = $('#textFilter').val()
+      if (term !== '') {
+        window.location = '/filter/' + term
+      } else {
+        window.location = '/'
+      }
+    })
+    
+    $('#btnClear').on('click', function () {
+      window.location = '/'
+    })
+  </script>
+{% endblock %}
