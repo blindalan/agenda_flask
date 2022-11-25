@@ -47,15 +47,17 @@ Vantagens:
 - É mais flexível que métodos estáticos por permitir o polimorfismo.
 
 Desvantagens:
+- Viola o Princípio da Responsabilidade Única. O padrão resolve dois problemas ao mesmo tempo;
 - Qualquer parte do código pode chamar o método instance(), e ter o acesso aos dados dessa classe; 
 - Falsa segurança: No java, por exemplo, não existe uma classe apenas por JVM. O conceito de carregamento de classes em java é feito por ClassLoader.
 
-## venv
+## Observações sobre o projeto:
+
+### venv
 - Significa virtual enveroment
 - Para instalação local das bibliotecas usadas no projeto
 
 
-## editor e ide usada para o desenvolvimento
-
+### Editor e ide usada para o desenvolvimento
 - vscode
 - pycharm
