@@ -9,6 +9,8 @@
 
 Código desenvolvido por Marcos Alan
 
+Link do vídeo do trabalho: https://drive.google.com/file/d/13qB_YBDGyrCEpLi6JooJCT4tpX4AUZ8W/view
+
 ## Do que se trata esta aplicação?
 
 Esta aplicação é uma agenda de contatos feita com Flask e utiliza o padrão Singleton. Para persistência de dados, foi escolhido o banco de dados MySQL. 
