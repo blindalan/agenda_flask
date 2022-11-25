@@ -7,7 +7,7 @@
 <img src="https://github.com/marlonlupa.png" width="45" height="45" style="max-width: 100%;">
 </div>
 
-Código desenvolvido por Marcos Alan
+Código desenvolvido por Marcos Alan.
 
 Link do vídeo do trabalho: https://drive.google.com/file/d/13qB_YBDGyrCEpLi6JooJCT4tpX4AUZ8W/view
 
@@ -30,9 +30,14 @@ https://github.com/blindalan/agenda_simples
 
 ## Singleton
 
-Esse design pattern se caracteriza por ser um dos padrões mais simples de implementar. Ele fornece apenas uma classe para criação dos métodos e especificação deles. Aqui temos um exemplo de como funciona a criação de instâncias:
-
+Esse design pattern se caracteriza por ser um dos padrões mais simples de implementar. Ele fornece apenas uma classe para criação dos métodos e especificação deles.
 <img src="https://miro.medium.com/max/1028/1*WXXQZp1glrQxLqrQ_TDN7Q.png" style="max-width: 100%;">
+
+Aqui temos o diagrama de classe que mostra como funciona a criação de instâncias:
+
+<img src="https://arquivo.devmedia.com.br/artigos/Higor_Medeiros/PadraoSingleton/PadraoSingleton_Java1.jpg" style="max-width: 100%;">
+
+Nele podemos notar a presença do construtor da classe Singleton(), que é setado como privado. Ele não permite que a classe seja instanciada a não ser que seja feito por ela mesmo. Nesse caso será instanciada pelo método getInstance(), que é estático e pode ser acessado de qualquer outra classe sem precisar instanciar a classe Singleton().
 
 Ele também é eficiente em simplificar as conexões com o banco de dados, evitando conexões irrelevantes.
 
@@ -52,6 +57,10 @@ Desvantagens:
 - Viola o Princípio da Responsabilidade Única. O padrão resolve dois problemas ao mesmo tempo;
 - Qualquer parte do código pode chamar o método instance(), e ter o acesso aos dados dessa classe; 
 - Falsa segurança: No java, por exemplo, não existe uma classe apenas por JVM. O conceito de carregamento de classes em java é feito por ClassLoader.
+
+## Conclusão
+
+Esse padrão é indicado quando se necessita de um único ponto para criação de instâncias de classe, ou de apenas uma instância de classe. Aplicativos que necessitam de um ponto de acesso global se beneficiam desse design pattern.
 
 ## Observações sobre o projeto:
 
