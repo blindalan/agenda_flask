@@ -33,7 +33,7 @@ https://github.com/blindalan/agenda_simples
 Esse design pattern se caracteriza por ser um dos padrões mais simples de implementar. Ele fornece apenas uma classe para criação dos métodos e especificação deles.
 <img src="https://miro.medium.com/max/1028/1*WXXQZp1glrQxLqrQ_TDN7Q.png" style="max-width: 100%;">
 
-Aqui temos o diagrama de classe que mostra como funciona a criação de instâncias:
+Aqui temos um exemplo de diagrama de classe que mostra como funciona a criação de instâncias:
 
 <img src="https://arquivo.devmedia.com.br/artigos/Higor_Medeiros/PadraoSingleton/PadraoSingleton_Java1.jpg" style="max-width: 100%;">
 
